@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+@import url('./styles/reset.css');
+
+body {
+  font-family: 'Rubik', sans-serif;
+}
+
+.app {
+  background-color: #dbead9;
+  width: 100vw;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.wrapper {
+  padding-top: 100px;
+}
+
+.todo {
+  background-color: #ffffff;
+  width: 1000px;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding: 30px 10px;
+}
+
+@media (max-width: 1050px) {
+  .todo {
+    width: 95%;
+  }
+}
+
+@media (max-width: 500px) {
+  .todo {
+    width: 90%;
+  }
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+h1 span {
+  color: #8ab780;
+}
+
+.InputEnter {
+  display: flex;
+  align-items: center;
+  padding: 0px 30px;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 500px) {
+  .InputEnter {
+    flex-direction: column;
+    padding: 0 15px;
+  }
+}
+
+.InputEnter__add {
+  background-color: #8ab780;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 15px 20px;
+  cursor: pointer;
+  flex: 0 1 100%;
+  transition: background-color 0.3s;
+}
+
+.InputEnter__add:hover {
+  background-color: #789072;
+}
+
+.InputEnter__input {
+  font-size: 20px;
+  padding: 13px 20px;
+  border-radius: 10px;
+  flex: 0 1 calc(50% - 50px);
+  border: 2px solid #8ab780;
+}
+.InputEnter__input_big {
+  flex: 0 1 100%;
+}
+.InputEnter__input:focus {
+  border: 2px solid #789072;
+  outline: none;
+}
+
+.todo h2 {
+  font-size: 30px;
+}
+
+.todo__body {
+  padding: 0px 30px;
+}
+
+@media (max-width: 500px) {
+  .todo__body {
+    padding: 0px 15px;
+  }
+}
+
+.todo__item {
+  background-color: #dbead9;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.todo__top {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+.todo__top .todo__content {
+  flex: 1 1 auto;
+}
+
+.todo__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.todo__bottom .todo__content {
+  margin-bottom: 20px;
+}
+
+.todo__item:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.todo__label {
+  cursor: pointer;
+  transition: opacity 0.3s;
+  flex: 0 1 30px;
+}
+
+.todo__label:hover {
+  opacity: 0.6;
+}
+
+.todo__content {
+  text-align: left;
+  font-size: 20px;
+  overflow: hidden;
+}
+
+.todo__changeinput {
+  display: block;
+  background-color: inherit;
+  font-size: 20px;
+  border: none;
+  border-bottom: 1px solid black;
+  overflow: hidden;
+}
+
+.todo__icons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.todo__change {
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.todo__change:hover {
+  opacity: 0.6;
+}
+
+.todo__delete {
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.todo__delete:hover {
+  opacity: 0.6;
+}
+.todo__date {
+  font-size: 12px;
+}
+.todo__name {
+  font-weight: 700;
+  font-size: 22px;
+}
