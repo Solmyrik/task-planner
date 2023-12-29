@@ -1,15 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
 @import url('./styles/reset.css');
 
+html,
 body {
   font-family: 'Rubik', sans-serif;
+  min-width: 100%;
+  height: 100%;
 }
 
 .app {
   background-color: #dbead9;
-  width: 100vw;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
-  text-align: center;
 }
 
 .wrapper {
@@ -24,22 +29,11 @@ body {
   padding: 30px 10px;
 }
 
-@media (max-width: 1050px) {
-  .todo {
-    width: 95%;
-  }
-}
-
-@media (max-width: 500px) {
-  .todo {
-    width: 90%;
-  }
-}
-
 h1 {
   font-size: 36px;
   font-weight: 700;
   margin-bottom: 30px;
+  text-align: center;
 }
 
 h1 span {
@@ -53,13 +47,6 @@ h1 span {
   gap: 10px;
   margin-bottom: 30px;
   flex-wrap: wrap;
-}
-
-@media (max-width: 500px) {
-  .InputEnter {
-    flex-direction: column;
-    padding: 0 15px;
-  }
 }
 
 .InputEnter__add {
@@ -99,12 +86,6 @@ h1 span {
 
 .todo__body {
   padding: 0px 30px;
-}
-
-@media (max-width: 500px) {
-  .todo__body {
-    padding: 0px 15px;
-  }
 }
 
 .todo__item {
@@ -191,4 +172,38 @@ h1 span {
 .todo__name {
   font-weight: 700;
   font-size: 22px;
+}
+
+.todo__item_notactive {
+  background-color: #dbead97b;
+  text-decoration: line-through;
+}
+.select {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 30px;
+  margin-bottom: 20px;
+}
+select {
+  color: #8ab780;
+  background-color: #f7f7f7;
+  border: 1px solid #8ab780;
+  padding: 15px;
+  border-radius: 5px;
+  outline: none;
+}
+@media (max-width: 1024px) {
+  .todo {
+    width: 100%;
+    padding: 30px 0px;
+  }
+}
+@media (max-width: 767.9px) {
+  .InputEnter {
+    flex-direction: column;
+    padding: 0 15px;
+  }
+  .InputEnter__input {
+    flex: 0 1 100%;
+  }
 }

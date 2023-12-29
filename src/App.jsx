@@ -2,12 +2,20 @@
 import { useEffect, useState } from 'react';
 import InputEnter from './components/InputEnter';
 import Todo from './components/Todo';
+import Sort from './components/Sort';
+import TaskNotification from './components/Notification';
+import Notification from './components/Notification';
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [currentTitle, setCurrentTitle] = useState('');
   const [currentDescription, setCurrentDescription] = useState('');
   const [dateTime, setDateTime] = useState('');
+  const [selectedValue, setSelectedValue] = useState('');
+
+  const handleSelectChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
 
   useEffect(() => {
     const localTasks = JSON.parse(localStorage.getItem('myTasks'));
@@ -32,6 +40,7 @@ const App = () => {
         description,
         dateTime,
         id: currentDate,
+        active: true,
       },
     ]);
     console.log(tasks);
@@ -45,22 +54,48 @@ const App = () => {
           description,
           dateTime,
           id: currentDate,
+          active: true,
         },
       ]),
     );
   };
 
   const onDeleteTask = (id) => {
-    const currentTask = tasks.filter((task, index) => index !== id);
+    const currentTask = tasks.filter((task) => task.id !== id);
     setTasks(currentTask);
     localStorage.setItem('myTasks', JSON.stringify(currentTask));
   };
 
   const onChangeTask = (id, text) => {
     const current = tasks;
-    current[id] = text;
-    setTasks([...current]);
-    localStorage.setItem('myTasks', JSON.stringify(tasks));
+    let currentIndex = 0;
+
+    current.map((item, index) => {
+      if (item.id === id) {
+        currentIndex = index;
+      }
+    });
+
+    current[currentIndex].dateTime = text.dateTime;
+    current[currentIndex].description = text.description;
+    current[currentIndex].title = text.title;
+
+    setTasks(current);
+    localStorage.setItem('myTasks', JSON.stringify(current));
+  };
+
+  const onChangeActive = (index) => {
+    let currentIndex = 0;
+    tasks.forEach((e, i) => {
+      if (e.id == index) {
+        currentIndex = i;
+      }
+    });
+
+    const currentTask = tasks;
+    currentTask[currentIndex].active = !currentTask[currentIndex].active;
+
+    setTasks([...currentTask]);
   };
 
   return (
@@ -80,22 +115,33 @@ const App = () => {
               setDateTime={setDateTime}
               setCurrentDescription={setCurrentDescription}
             />
+            <Sort handleSelectChange={handleSelectChange} selectedValue={selectedValue} />
           </section>
           <section className="todo__body">
             {tasks.length === 0 ? (
               <h2>Задачи не найдены</h2>
             ) : (
-              tasks.map((task, id) => (
-                <Todo
-                  index={id}
-                  onChangeTask={onChangeTask}
-                  onDeleteTask={onDeleteTask}
-                  key={id}
-                  task={task}
-                />
-              ))
+              tasks
+                .sort((a, b) => {
+                  if (selectedValue === 'date+') {
+                    return Number(b.id) - Number(a.id);
+                  } else {
+                    return Number(a.id) - Number(b.id);
+                  }
+                })
+                .map((task, id) => (
+                  <Todo
+                    index={task.id}
+                    onChangeTask={onChangeTask}
+                    onDeleteTask={onDeleteTask}
+                    onChangeActive={onChangeActive}
+                    key={id}
+                    task={task}
+                  />
+                ))
             )}
           </section>
+          <Notification tasks={tasks} />
         </main>
       </div>
     </div>

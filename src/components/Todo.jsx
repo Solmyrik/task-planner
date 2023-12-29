@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 // eslint-disable-next-line react/prop-types
-const Todo = ({ task, onDeleteTask, index, onChangeTask }) => {
+const Todo = ({ task, onDeleteTask, index, onChangeTask, onChangeActive }) => {
   const [activeInput, setActiveInput] = useState(true);
   const [currentInput, setCurrentInput] = useState({
     title: task.title,
@@ -17,10 +17,14 @@ const Todo = ({ task, onDeleteTask, index, onChangeTask }) => {
       setActiveInput(true);
     }
   };
+
   return (
-    <div className="todo__item">
+    <div
+      className={
+        task.active === true ? 'todo__item' : ['todo__item', 'todo__item_notactive'].join(' ')
+      }>
       <div className="todo__top">
-        <div className="todo__label" onClick={() => onDeleteTask(index)}>
+        <div className="todo__label" onClick={() => onChangeActive(index)}>
           <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
             <path
               fill="#8ab780"
