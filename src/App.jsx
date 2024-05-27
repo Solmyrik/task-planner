@@ -1,24 +1,26 @@
 // import React, { useState } from 'react';
-import { useEffect, useState } from 'react';
-import InputEnter from './components/InputEnter';
-import Todo from './components/Todo';
-import Sort from './components/Sort';
-import TaskNotification from './components/Notification';
-import Notification from './components/Notification';
+import { useEffect, useState } from "react";
+import InputEnter from "./components/InputEnter";
+import Todo from "./components/Todo";
+import Sort from "./components/Sort";
+import TaskNotification from "./components/Notification";
+import Notification from "./components/Notification";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
-  const [currentTitle, setCurrentTitle] = useState('');
-  const [currentDescription, setCurrentDescription] = useState('');
-  const [dateTime, setDateTime] = useState('');
-  const [selectedValue, setSelectedValue] = useState('');
+  const [currentTitle, setCurrentTitle] = useState("");
+  const [currentDescription, setCurrentDescription] = useState("");
+  const [dateTime, setDateTime] = useState("");
+  const [selectedValue, setSelectedValue] = useState("");
+
+  alert("мой телеграм: https://t.me/solmyr_k. Либо вотсап: +79158152958");
 
   const handleSelectChange = (event) => {
     setSelectedValue(event.target.value);
   };
 
   useEffect(() => {
-    const localTasks = JSON.parse(localStorage.getItem('myTasks'));
+    const localTasks = JSON.parse(localStorage.getItem("myTasks"));
 
     if (localTasks) {
       setTasks(localTasks);
@@ -46,7 +48,7 @@ const App = () => {
     console.log(tasks);
 
     localStorage.setItem(
-      'myTasks',
+      "myTasks",
       JSON.stringify([
         ...tasks,
         {
@@ -63,7 +65,7 @@ const App = () => {
   const onDeleteTask = (id) => {
     const currentTask = tasks.filter((task) => task.id !== id);
     setTasks(currentTask);
-    localStorage.setItem('myTasks', JSON.stringify(currentTask));
+    localStorage.setItem("myTasks", JSON.stringify(currentTask));
   };
 
   const onChangeTask = (id, text) => {
@@ -81,7 +83,7 @@ const App = () => {
     current[currentIndex].title = text.title;
 
     setTasks(current);
-    localStorage.setItem('myTasks', JSON.stringify(current));
+    localStorage.setItem("myTasks", JSON.stringify(current));
   };
 
   const onChangeActive = (index) => {
@@ -123,7 +125,7 @@ const App = () => {
             ) : (
               tasks
                 .sort((a, b) => {
-                  if (selectedValue === 'date+') {
+                  if (selectedValue === "date+") {
                     return Number(b.id) - Number(a.id);
                   } else {
                     return Number(a.id) - Number(b.id);
