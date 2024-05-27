@@ -102,7 +102,9 @@ const App = () => {
     <div className="app">
       <div className="wrapper">
         <main className="todo">
-          <a href="https://wa.clck.bar/79158152958">WhatsApp todo</a>
+          <h1>
+            Task<span> Planner</span>
+          </h1>
           <section className="todo__header">
             <InputEnter
               currentTitle={currentTitle}
