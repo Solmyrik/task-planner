@@ -13,8 +13,6 @@ const App = () => {
   const [dateTime, setDateTime] = useState("");
   const [selectedValue, setSelectedValue] = useState("");
 
-  alert("мой телеграм: https://t.me/solmyr_k. Либо вотсап: +79158152958");
-
   const handleSelectChange = (event) => {
     setSelectedValue(event.target.value);
   };
